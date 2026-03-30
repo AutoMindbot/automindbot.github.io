@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoMind | Next-Gen AI Form Automation</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <style>
+        :root {
+            --bg: #050505;
+            --accent: #00f2ff;
+            --secondary: #7000ff;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Segoe UI', sans-serif; }
+        body { background-color: var(--bg); color: white; overflow-x: hidden; }
+
+        /* Animated Background */
+        .bg-glow {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, #101020 0%, #050505 100%);
+            z-index: -1;
+        }
+
+        .glow-circle {
+            position: absolute; width: 400px; height: 400px;
+            background: var(--secondary); filter: blur(150px);
+            opacity: 0.15; border-radius: 50%; top: -100px; right: -100px;
+        }
+
+        /* Navbar */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 25px 10%; background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100;
+        }
+
+        .logo { font-size: 28px; font-weight: 800; letter-spacing: 2px; color: var(--accent); }
+        .logo span { color: white; }
+
+        /* Hero Section */
+        .hero {
+            height: 90vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center; padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 5.5rem); line-height: 1.1; font-weight: 900;
+            background: linear-gradient(to bottom, #fff 40%, #888 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem; color: #aaa; max-width: 650px; margin-bottom: 40px; line-height: 1.6;
+        }
+
+        /* Neon Button */
+        .cta-btn {
+            padding: 18px 45px; font-size: 1.1rem; font-weight: 700;
+            color: black; background: var(--accent); border: none;
+            border-radius: 50px; cursor: pointer; text-decoration: none;
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.4);
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.1); box-shadow: 0 0 40px rgba(0, 242, 255, 0.7);
+        }
+
+        /* Features Section */
+        .features {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px; padding: 100px 10%; background: #080808;
+        }
+
+        .card {
+            background: var(--card-bg); border: 1px solid var(--glass-border);
+            padding: 40px; border-radius: 24px; transition: 0.4s;
+            backdrop-filter: blur(5px);
+        }
+
+        .card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: var(--accent); transform: translateY(-10px);
+        }
+
+        .card i { font-size: 2.5rem; color: var(--accent); margin-bottom: 20px; }
+        .card h3 { font-size: 1.5rem; margin-bottom: 15px; color: #fff; }
+        .card p { color: #888; font-size: 1rem; line-height: 1.6; }
+
+        /* Footer */
+        footer {
+            padding: 80px 20px; text-align: center; border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-text { color: #555; font-size: 0.9rem; margin-top: 20px; }
+        .author { color: var(--accent); font-weight: 600; text-decoration: none; }
+
+        /* Animations */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .animate { animation: fadeIn 1s ease forwards; }
+
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow"></div>
+    <div class="glow-circle"></div>
+
+    <nav>
+        <div class="logo">AUTO<span>MIND</span></div>
+        <div style="font-size: 0.8rem; letter-spacing: 2px; color: #555;">VER 1.0.0</div>
+    </nav>
+
+    <section class="hero animate">
+        <h1>Intelligence <br> <span style="color: var(--accent);">Automated.</span></h1>
+        <p>Experience the most advanced Google Forms bot ever created. Powered by Gemini AI to think, fill, and submit with zero effort.</p>
+        <a href="#" class="cta-btn" onclick="showPopup()">Get Started Free</a>
+    </section>
+
+    <section class="features">
+        <div class="card animate" style="animation-delay: 0.2s;">
+            <i class="fas fa-brain"></i>
+            <h3>Neural Logic</h3>
+            <p>Integrated with Gemini Pro AI to provide context-aware answers that look 100% human-written.</p>
+        </div>
+
+        <div class="card animate" style="animation-delay: 0.4s;">
+            <i class="fas fa-bolt"></i>
+            <h3>Ghost Mode</h3>
+            <p>Smart throttle technology that mimics human mouse movements and typing speeds to avoid detection.</p>
+        </div>
+
+        <div class="card animate" style="animation-delay: 0.6s;">
+            <i class="fas fa-shield-halved"></i>
+            <h3>MindPower</h3>
+            <p>A secure, cloud-based credit system. Generate gift codes and manage your sessions with ease.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p style="font-size: 1.2rem;">Designed for the Future of Work.</p>
+        <p class="footer-text">Project developed by <a href="#" class="author">Uday S Sharma</a></p>
+        <p class="footer-sub" style="color: #333; margin-top: 10px;">&copy; 2026 AUTOMIND LABS. ALL RIGHTS RESERVED.</p>
+    </footer>
+
+    <script>
+        function showPopup() {
+            alert("AutoMind v1.0.0 is currently in secure private beta. Link will be available after the next security audit.");
+        }
+    </script>
+
+</body>
+</html>
