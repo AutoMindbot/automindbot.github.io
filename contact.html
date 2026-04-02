@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | AutoMindBot</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .fade-in { opacity: 1 !important; transform: none !important; }
+    
+    /* Windows Icon Alignment */
+    .btn-with-icon {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    /* Form Specific Styling for Premium Look */
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    .form-control {
+      width: 100%;
+      padding: 14px;
+      background: #1f2937;
+      border: 1px solid var(--border-color);
+      color: white;
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 0.3s ease;
+      font-family: inherit;
+    }
+    .form-control:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+    }
+    .contact-card {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--surface-color);
+      padding: 40px;
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">Auto<span class="text-gradient">MindBot</span></a>
+      <button class="mobile-menu-btn">☰</button>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="features.html">Features</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="assets/AutoMindBot_Setup.exe" download class="btn btn-primary btn-with-icon" style="padding: 8px 16px; margin-left: 15px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1V11.7H0V3.449zm0 9.15h9.75V22.2L0 20.851V12.599zm11.25-10.749L24 0v11.7H11.25V1.85zM11.25 12.6H24v11.4l-12.75-1.8V12.6z"/></svg>
+          Download for PC
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="page-header fade-in">
+    <div class="container text-center">
+      <h1>Get in <span class="text-gradient">Touch</span></h1>
+      <p>Have questions or need technical support? We're here to help.</p>
+    </div>
+  </header>
+
+  <section class="section-padding container fade-in">
+    <div class="contact-card">
+      <div class="text-center" style="margin-bottom: 32px;">
+        <h3 style="margin-bottom: 8px; font-size: 1.5rem;">Send us a message</h3>
+        <p style="color: var(--text-muted);">Email us directly at <strong>hello@automindbot.app</strong></p>
+      </div>
+      
+      <form onsubmit="event.preventDefault(); alert('Thank you! Your message has been sent successfully to the AutoMindBot team.'); this.reset();">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" class="form-control" placeholder="John Doe" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" class="form-control" placeholder="john@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Your Message</label>
+          <textarea id="message" rows="5" class="form-control" placeholder="How can we help you with AutoMindBot?" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 14px; font-size: 1rem; margin-top: 10px;">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="index.html" class="logo">Auto<span class="text-gradient">MindBot</span></a>
+          <p style="color: var(--text-muted); margin-top: 16px; font-size: 0.9rem;">Empowering students through intelligent automation.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="features.html">Features</a>
+          <a href="pricing.html">Pricing</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="terms.html">Terms of Service</a>
+          <a href="privacy.html">Privacy Policy</a>
+        </div>
+      </div>
+      <div class="footer-bottom text-center">
+        <p>&copy; 2026 AutoMindBot. All rights reserved. | Built for Windows PC.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

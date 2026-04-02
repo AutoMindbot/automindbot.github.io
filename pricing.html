@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing | AutoMindBot Credits</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* --- Login Popup Ka Style --- */
+    .auth-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.85); display: none; align-items: center;
+      justify-content: center; z-index: 10000; backdrop-filter: blur(5px);
+    }
+    .auth-modal {
+      background: #111827; padding: 40px; border-radius: 20px;
+      width: 90%; max-width: 400px; border: 1px solid #6366f1;
+      box-shadow: 0 0 30px rgba(99, 102, 241, 0.3); text-align: center;
+    }
+    .auth-input {
+      width: 100%; padding: 12px; margin: 10px 0; background: #1f2937;
+      border: 1px solid #374151; color: white; border-radius: 8px; outline: none;
+    }
+    .auth-input:focus { border-color: #6366f1; }
+    .auth-btn { width: 100%; padding: 12px; background: #6366f1; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; margin-top: 10px; }
+    .close-btn { background: none; border: none; color: #9ca3af; margin-top: 15px; cursor: pointer; font-size: 0.9rem; }
+    
+    /* User Status bar after login */
+    #userStatus {
+      display: none; background: rgba(99, 102, 241, 0.1); 
+      padding: 10px; color: #6366f1; font-size: 0.9rem; font-weight: 500;
+    }
+
+    /* Windows Icon Alignment */
+    .btn-with-icon {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="auth-overlay" id="authOverlay">
+    <div class="auth-modal">
+      <h2 id="authTitle" style="color: white; margin-bottom: 10px;">Login to AutoMindBot</h2>
+      <p style="color: #9ca3af; font-size: 0.85rem; margin-bottom: 20px;">Use your App credentials to sync credits.</p>
+      
+      <input type="email" id="userEmail" class="auth-input" placeholder="Email Address">
+      <input type="password" id="userPass" class="auth-input" placeholder="Password">
+      
+      <button class="auth-btn" onclick="handleAuth()">Continue</button>
+      
+      <p style="margin-top:20px; font-size:0.85rem; color:#9ca3af;">
+        New user? <a href="javascript:void(0)" onclick="toggleAuthMode()" id="authToggleText" style="color:#6366f1; text-decoration: none;">Create Account</a>
+      </p>
+      <button class="close-btn" onclick="closeAuth()">Cancel / Close</button>
+    </div>
+  </div>
+
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">Auto<span class="text-gradient">MindBot</span></a>
+      <button class="mobile-menu-btn">☰</button>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="features.html">Features</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="assets/AutoMindBot_Setup.exe" download class="btn btn-primary btn-with-icon" style="padding: 8px 16px; margin-left: 15px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1V11.7H0V3.449zm0 9.15h9.75V22.2L0 20.851V12.599zm11.25-10.749L24 0v11.7H11.25V1.85zM11.25 12.6H24v11.4l-12.75-1.8V12.6z"/></svg>
+          Download for PC
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div id="userStatus" class="text-center">
+    Logged in as: <span id="currentUserEmail"></span> | <a href="javascript:void(0)" onclick="logout()" style="color: #ef4444; margin-left: 10px;">Logout</a>
+  </div>
+
+  <header class="page-header" style="opacity: 1; transform: none; padding-bottom: 40px;">
+    <div class="container">
+      <h1>Simple <span class="text-gradient">Credit Refills</span></h1>
+      <p>Choose your MindPower pack. All premium features are included in every pack.</p>
+    </div>
+  </header>
+
+  <section class="container text-center" style="margin-bottom: 40px;">
+    <div style="background: rgba(99, 102, 241, 0.1); padding: 20px; border-radius: 12px; border: 1px solid rgba(99, 102, 241, 0.2); display: inline-block;">
+        <span style="color: var(--primary-color); font-weight: 600;">✨ ALL PLANS INCLUDE:</span> 
+        <span style="color: var(--text-muted); margin-left: 10px;">Full AI Access • Bulk Submission • Human-Like Profiles • 24/7 Support</span>
+    </div>
+  </section>
+
+  <section class="section-padding container" style="opacity: 1; transform: none; padding-top: 20px;">
+    <div class="grid-3">
+      
+      <div class="card pricing-card text-center">
+        <h3>Basic Refill</h3>
+        <p>Perfect for light usage</p>
+        <div class="price">₹10</div>
+        <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary-color); margin-bottom: 20px;">50 MindPower</div>
+        <ul class="pricing-features" style="text-align: left; list-style: none;">
+          <li>✓ All Premium Features</li>
+          <li>✓ Instant Credit Delivery</li>
+          <li>✓ No Expiry on Credits</li>
+        </ul>
+        <button class="btn btn-secondary" style="width: 100%" onclick="checkUserAndPay(10, 50)">Refill Now</button>
+      </div>
+
+      <div class="card pricing-card popular text-center">
+        <div class="badge">Most Value</div>
+        <h3>Standard Refill</h3>
+        <p>For regular assignments</p>
+        <div class="price">₹49</div>
+        <div style="font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: 20px;">300 MindPower</div>
+        <ul class="pricing-features" style="text-align: left; list-style: none;">
+          <li>✓ All Premium Features</li>
+          <li>✓ 15% Extra Value</li>
+          <li>✓ Instant Credit Delivery</li>
+          <li>✓ No Expiry on Credits</li>
+        </ul>
+        <button class="btn btn-primary" style="width: 100%" onclick="checkUserAndPay(49, 300)">Refill Now</button>
+      </div>
+
+      <div class="card pricing-card text-center">
+        <h3>Power Refill</h3>
+        <p>For heavy workloads</p>
+        <div class="price">₹99</div>
+        <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary-color); margin-bottom: 20px;">1000 MindPower</div>
+        <ul class="pricing-features" style="text-align: left; list-style: none;">
+          <li>✓ All Premium Features</li>
+          <li>✓ 40% Extra Value</li>
+          <li>✓ Instant Credit Delivery</li>
+          <li>✓ No Expiry on Credits</li>
+        </ul>
+        <button class="btn btn-secondary" style="width: 100%" onclick="checkUserAndPay(99, 1000)">Refill Now</button>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="index.html" class="logo">Auto<span class="text-gradient">MindBot</span></a>
+          <p style="color: var(--text-muted); margin-top: 16px; font-size: 0.9rem;">Empowering students through intelligent automation.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="features.html">Features</a>
+          <a href="pricing.html">Pricing</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="terms.html">Terms of Service</a>
+          <a href="privacy.html">Privacy Policy</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 AutoMindBot. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+
+  <script>
+    // --- Firebase Configuration (Update this from your Firebase Console) ---
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT.firebaseapp.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT.appspot.com",
+      messagingSenderId: "YOUR_ID",
+      appId: "YOUR_APP_ID"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    let isLoginMode = true;
+
+    function toggleAuthMode() {
+      isLoginMode = !isLoginMode;
+      document.getElementById('authTitle').innerText = isLoginMode ? "Login to AutoMindBot" : "Create Account";
+      document.getElementById('authToggleText').innerText = isLoginMode ? "Create Account" : "Login Instead";
+    }
+
+    function closeAuth() {
+      document.getElementById('authOverlay').style.display = 'none';
+    }
+
+    async function handleAuth() {
+      const email = document.getElementById('userEmail').value;
+      const pass = document.getElementById('userPass').value;
+      
+      if(!email || !pass) return alert("Please fill all fields");
+
+      try {
+        if (isLoginMode) {
+          await auth.signInWithEmailAndPassword(email, pass);
+          alert("Success! Now you can proceed to payment.");
+        } else {
+          const res = await auth.createUserWithEmailAndPassword(email, pass);
+          await db.collection("users").doc(res.user.uid).set({
+            email: email,
+            mindPower: 0,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+          });
+          alert("Account created! Welcome to AutoMindBot.");
+        }
+        closeAuth();
+      } catch (error) {
+        alert(error.message);
+      }
+    }
+
+    function logout() {
+      auth.signOut().then(() => {
+        alert("Logged out successfully");
+        location.reload();
+      });
+    }
+
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        document.getElementById('userStatus').style.display = 'block';
+        document.getElementById('currentUserEmail').innerText = user.email;
+      } else {
+        document.getElementById('userStatus').style.display = 'none';
+      }
+    });
+
+    function checkUserAndPay(price, credits) {
+      const user = auth.currentUser;
+      if (!user) {
+        document.getElementById('authOverlay').style.display = 'flex';
+      } else {
+        alert(`Proceeding to collect ₹${price} for ${credits} MindPower credits for ${user.email}`);
+      }
+    }
+  </script>
+  <script src="js/script.js"></script>
+</body>
+</html>

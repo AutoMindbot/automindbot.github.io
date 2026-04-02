@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Features | AutoMindBot</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .fade-in { opacity: 1 !important; transform: none !important; }
+    
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 25px;
+    }
+
+    /* Windows Icon Alignment */
+    .btn-with-icon {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    /* --- Your Stable Design Logic --- */
+    .card {
+      position: relative;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 30px;
+      transition: all 0.3s ease;
+      z-index: 1;
+      background: var(--surface-color);
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+    }
+
+    .card:hover {
+      border-color: var(--primary-color);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+      transform: translateY(-5px); 
+      z-index: 10;
+    }
+
+    .how-it-works {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: var(--surface-color);
+      padding: 25px;
+      font-size: 0.9rem;
+      color: var(--primary-color);
+      font-weight: 500;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(15px);
+      transition: all 0.3s ease;
+      border-top: 1px solid rgba(99, 102, 241, 0.2);
+      border-radius: 0 0 16px 16px;
+      z-index: 5;
+      text-align: center;
+    }
+
+    .card:hover .how-it-works {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .card:hover h3, .card:hover p, .card:hover .card-icon {
+      opacity: 0.15;
+      filter: blur(4px);
+      transition: 0.3s;
+    }
+
+    .card-icon { font-size: 2.2rem; margin-bottom: 15px; transition: 0.3s; }
+    .card h3 { margin-bottom: 10px; transition: 0.3s; }
+    .card p { color: var(--text-muted); transition: 0.3s; }
+
+    /* --- Professional Feature Descriptions (Protected) --- */
+    .card-1:hover .how-it-works::after { content: "Advanced AI that identifies input fields and provides contextually accurate data based on user profiles."; }
+    .card-2:hover .how-it-works::after { content: "High-speed automation engine capable of processing and submitting multiple entries in a single session."; }
+    .card-3:hover .how-it-works::after { content: "Intelligent behavior simulation that mimics natural typing rhythms and navigation to prevent bot detection."; }
+    .card-4:hover .how-it-works::after { content: "Logical decision-making system that filters irrelevant questions and selects the most optimal responses."; }
+    .card-5:hover .how-it-works::after { content: "Precision controls to adjust the emotional tone and vocabulary of generated text for specific requirements."; }
+    .card-6:hover .how-it-works::after { content: "Seamless workflow management that navigates and completes complex, multi-step online forms automatically."; }
+    .card-7:hover .how-it-works::after { content: "A transparent digital ledger for managing automation usage through a secure credit-based economy."; }
+    .card-8:hover .how-it-works::after { content: "Integrated secure payment gateway supporting instant QR-based credit refills via any UPI application."; }
+    .card-9:hover .how-it-works::after { content: "A promotional engine for validating and redeeming unique voucher codes for instant credit bonuses."; }
+    .card-10:hover .how-it-works::after { content: "A centralized management interface to toggle, pause, or terminate active automation processes instantly."; }
+    .card-11:hover .how-it-works::after { content: "Secure account infrastructure with encrypted credentials to protect user data and activity logs."; }
+    .card-12:hover .how-it-works::after { content: "Dynamic persona management allowing the bot to switch between different academic or professional identities."; }
+    .card-13:hover .how-it-works::after { content: "Real-time cloud synchronization for settings, credits, and history across multiple Windows devices."; }
+    .card-14:hover .how-it-works::after { content: "Direct communication channel for bug reporting and submitting feature requests to the development team."; }
+    .card-15:hover .how-it-works::after { content: "Affiliate tracking system that manages referral bonuses for both the existing user and the new invitee."; }
+    .card-16:hover .how-it-works::after { content: "Pre-execution diagnostic tool that monitors internet stability to ensure data integrity during submission."; }
+    .card-17:hover .how-it-works::after { content: "Automated billing algorithm that executes credit deduction only after a successful task completion."; }
+    .card-18:hover .how-it-works::after { content: "WebSocket-based monitoring for immediate UI reflection of credit balance changes and refills."; }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">Auto<span class="text-gradient">MindBot</span></a>
+      <button class="mobile-menu-btn">☰</button>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="features.html">Features</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="assets/AutoMindBot_Setup.exe" download class="btn btn-primary btn-with-icon" style="padding: 8px 16px; margin-left: 15px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1V11.7H0V3.449zm0 9.15h9.75V22.2L0 20.851V12.599zm11.25-10.749L24 0v11.7H11.25V1.85zM11.25 12.6H24v11.4l-12.75-1.8V12.6z"/></svg>
+          Download for PC
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="page-header">
+    <div class="container text-center">
+      <h1>Simple & Powerful <span class="text-gradient">Features</span></h1>
+      <p>Easy to use, hard to beat. Hover over any card to see how it helps you.</p>
+    </div>
+  </header>
+
+  <section class="section-padding container">
+    <div class="grid-3">
+      
+      <div class="card card-1"><div class="card-icon">✍️</div><h3>1. AI Form Filling</h3><p>Smart, easy answers.</p><div class="how-it-works"></div></div>
+      <div class="card card-2"><div class="card-icon">⚡</div><h3>2. Bulk Submission</h3><p>Submit many at once.</p><div class="how-it-works"></div></div>
+      <div class="card card-3"><div class="card-icon">👤</div><h3>3. Human-Like System</h3><p>Works like a real person.</p><div class="how-it-works"></div></div>
+      <div class="card card-4"><div class="card-icon">🧠</div><h3>4. Smart Intelligence</h3><p>Picks only what is needed.</p><div class="how-it-works"></div></div>
+      <div class="card card-5"><div class="card-icon">🎛️</div><h3>5. Tone Control</h3><p>Choose your answer style.</p><div class="how-it-works"></div></div>
+      <div class="card card-6"><div class="card-icon">📄</div><h3>6. Multi-Page Logic</h3><p>Finishes long forms.</p><div class="how-it-works"></div></div>
+      <div class="card card-7"><div class="card-icon">💎</div><h3>7. MindPower Credits</h3><p>Easy point management.</p><div class="how-it-works"></div></div>
+      <div class="card card-8"><div class="card-icon">💸</div><h3>8. UPI Payments</h3><p>Quick QR recharge.</p><div class="how-it-works"></div></div>
+      <div class="card card-9"><div class="card-icon">🎁</div><h3>9. Gift Card System</h3><p>Get free bonus points.</p><div class="how-it-works"></div></div>
+      <div class="card card-10"><div class="card-icon">⏯️</div><h3>10. Bot Control</h3><p>Start or stop anytime.</p><div class="how-it-works"></div></div>
+      <div class="card card-11"><div class="card-icon">🔒</div><h3>11. Secure Auth</h3><p>Your data is protected.</p><div class="how-it-works"></div></div>
+      <div class="card card-12"><div class="card-icon">🎭</div><h3>12. Profile System</h3><p>Use different profiles.</p><div class="how-it-works"></div></div>
+      <div class="card card-13"><div class="card-icon">☁️</div><h3>13. Firebase Sync</h3><p>Works on any PC.</p><div class="how-it-works"></div></div>
+      <div class="card card-14"><div class="card-icon">💬</div><h3>14. Feedback System</h3><p>Talk to the developers.</p><div class="how-it-works"></div></div>
+      <div class="card card-15"><div class="card-icon">🤝</div><h3>15. Invite & Earn</h3><p>Reward for sharing.</p><div class="how-it-works"></div></div>
+      <div class="card card-16"><div class="card-icon">📶</div><h3>16. Network Detection</h3><p>Checks your internet.</p><div class="how-it-works"></div></div>
+      <div class="card card-17"><div class="card-icon">📉</div><h3>17. Auto Deduction</h3><p>Pay only for success.</p><div class="how-it-works"></div></div>
+      <div class="card card-18"><div class="card-icon">⏱️</div><h3>18. Real-Time Balance</h3><p>Instant point updates.</p><div class="how-it-works"></div></div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container text-center">
+      <p>&copy; 2026 AutoMindBot. Built for Students on Windows PC.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
