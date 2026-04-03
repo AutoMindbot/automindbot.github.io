@@ -5,6 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AutoMindBot | The Ultimate AI Student Assistant</title>
   <link rel="stylesheet" href="css/style.css">
+  /* Navbar Button Glow & Color Fix */
+    .nav-links a.nav-download-btn {
+      color: #ffffff !important; /* White text force karega */
+      background: var(--primary-color, #6366f1) !important; /* Button ka background force karega */
+      box-shadow: 0 0 20px rgba(99, 102, 241, 0.6) !important; /* Glow effect */
+      border-radius: 8px !important;
+      padding: 10px 20px !important;
+      margin-left: 15px !important;
+      border: none !important;
+    }
+    
+    .nav-links a.nav-download-btn:hover {
+      box-shadow: 0 0 30px rgba(99, 102, 241, 0.9) !important; /* Hover par glow badhayega */
+      transform: translateY(-2px) !important;
+    }
   <style>
     /* Content turant dikhane ke liye */
     .fade-in { opacity: 1 !important; transform: none !important; }
@@ -131,9 +146,9 @@
         <a href="pricing.html">Pricing</a>
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
-        <a href="https://github.com/AutoMindbot/automindbot.github.io/releases/download/v1.0.0/AutoMindBOT_Windows.zip" download class="btn btn-primary btn-with-icon" id="heroDownload">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1V11.7H0V3.449zm0 9.15h9.75V22.2L0 20.851V12.599zm11.25-10.749L24 0v11.7H11.25V1.85zM11.25 12.6H24v11.4l-12.75-1.8V12.6z"/></svg>
-          Download for Windows
+        <a href="https://github.com/AutoMindbot/automindbot.github.io/releases/download/v1.0.0/AutoMindBOT_Windows.zip" download class="btn btn-primary btn-with-icon nav-download-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1V11.7H0V3.449zm0 9.15h9.75V22.2L0 20.851V12.599zm11.25-10.749L24 0v11.7H11.25V1.85zM11.25 12.6H24v11.4l-12.75-1.8V12.6z"/></svg>
+          Download for PC
         </a>
       </div>
     </div>
