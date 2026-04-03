@@ -24,6 +24,99 @@
       gap: 10px;
       justify-content: center;
     }
+
+    /* =========================================
+       GUIDE MODAL (POPUP) STYLES
+       ========================================= */
+    .modal-overlay {
+      display: none; /* Default hidden */
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(5px);
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .modal-overlay.show {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-content {
+      background-color: #0a0a0a;
+      border: 1px solid #00ffff;
+      border-radius: 12px;
+      padding: 30px;
+      width: 90%;
+      max-width: 650px;
+      position: relative;
+      text-align: left;
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.15);
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      color: #aaa;
+      font-size: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .close-modal:hover {
+      color: #ff00ff;
+    }
+
+    .modal-content h2 {
+      color: #00ffff;
+      margin-bottom: 25px;
+      font-size: 2rem;
+      text-align: center;
+    }
+
+    .step-box {
+      background-color: #111;
+      border-left: 4px solid #ff00ff;
+      padding: 18px;
+      margin-bottom: 15px;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .step-box h4 {
+      color: white;
+      margin-bottom: 8px;
+      font-size: 1.15rem;
+    }
+
+    .step-box p {
+      color: #ccc;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .highlight-step {
+      border-left: 4px solid #00ffff;
+      background-color: rgba(0, 255, 255, 0.05);
+    }
+
+    .warning-text {
+      color: #ffcc00 !important;
+      margin-top: 12px !important;
+      font-size: 0.9rem !important;
+      font-style: italic;
+    }
   </style>
 </head>
 <body>
@@ -51,11 +144,11 @@
       <h1 style="line-height: 1.1;">Built for Students.<br><span class="text-gradient">Powered by AI.</span></h1>
       <p>Save hours of repetitive work and focus on what truly matters. AutoMindBot handles the boring tasks so you can handle the learning.</p>
       <div class="hero-btns">
-        <a href="assets/AutoMindBot_Setup.exe" download class="btn btn-primary btn-with-icon" style="padding: 16px 35px; font-size: 1.1rem;">
+        <a href="https://github.com/AutoMindbot/automindbot.github.io/releases/download/v1.0.0/AutoMindBOT_Windows.zip" download class="btn btn-primary btn-with-icon" style="padding: 16px 35px; font-size: 1.1rem;">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1V11.7H0V3.449zm0 9.15h9.75V22.2L0 20.851V12.599zm11.25-10.749L24 0v11.7H11.25V1.85zM11.25 12.6H24v11.4l-12.75-1.8V12.6z"/></svg>
           Download for Windows
         </a>
-        <a href="features.html" class="btn btn-secondary">View Features</a>
+        <a href="#" id="guideBtn" class="btn btn-secondary">Guide to Download & Install</a>
       </div>
       <p class="platform-info">
         Currently available for Windows PC & Laptops. <br>
@@ -119,9 +212,9 @@
     <div class="cta-section text-center">
       <h2 style="font-size: 2.5rem; margin-bottom: 16px;">Ready to automate?</h2>
       <p style="margin-bottom: 30px; color: var(--text-muted);">Join 1000+ students. Download the official AutoMindBot setup for Windows.</p>
-      <a href="assets/AutoMindBot_Setup.exe" download class="btn btn-primary btn-with-icon" style="padding: 18px 45px; font-size: 1.2rem;">
+      <a href="https://github.com/AutoMindbot/automindbot.github.io/releases/download/v1.0.0/AutoMindBOT_Windows.zip" download class="btn btn-primary btn-with-icon" style="padding: 18px 45px; font-size: 1.2rem;">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1V11.7H0V3.449zm0 9.15h9.75V22.2L0 20.851V12.599zm11.25-10.749L24 0v11.7H11.25V1.85zM11.25 12.6H24v11.4l-12.75-1.8V12.6z"/></svg>
-        Download for Windows (.exe)
+        Download for Windows (.zip)
       </a>
     </div>
   </section>
@@ -130,8 +223,7 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-col">
-          <a href="index.html" class="logo">Auto<span clStudents.
-          ass="text-gradient">MindBot</span></a>
+          <a href="index.html" class="logo">Auto<span class="text-gradient">MindBot</span></a>
           <p style="margin-top: 15px;">Smartest AI automation for the modern student.</p>
         </div>
         <div class="footer-col">
@@ -155,6 +247,60 @@
       </div>
     </div>
   </footer>
+
+  <div id="guideModal" class="modal-overlay">
+    <div class="modal-content">
+      <span class="close-modal" id="closeGuide">&times;</span>
+      <h2>Installation Guide</h2>
+      
+      <div class="step-box">
+        <h4>Step 1: Download the App</h4>
+        <p>Click on the "Download for Windows" button to save the ZIP file to your computer.</p>
+      </div>
+
+      <div class="step-box">
+        <h4>Step 2: Extract & Read</h4>
+        <p>Right-click the downloaded ZIP file and select <strong>"Extract All"</strong>. Once extracted, please open and read the <strong>"READ_ME_FIRST.txt"</strong> file for quick guidelines.</p>
+      </div>
+
+      <div class="step-box highlight-step">
+        <h4>Step 3: Run the Application</h4>
+        <p>Double-click the <code>AutoMindBOT.exe</code> file to start the app.</p>
+        <p class="warning-text">Note: You might see a "Windows protected your PC" warning from Windows Defender. This is normal for new apps. Just click <strong>"More info"</strong> and then <strong>"Run anyway"</strong>. We do not collect your personal data and are working with authorities to remove this warning soon.</p>
+      </div>
+
+      <div class="step-box">
+        <h4>Step 4: Automate Freely!</h4>
+        <p>Log in to your account and start automating your tasks without any hesitation. Enjoy the AutoMind experience!</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const modal = document.getElementById("guideModal");
+      const guideBtn = document.getElementById("guideBtn");
+      const closeBtn = document.getElementById("closeGuide");
+
+      // Open Modal on Button Click
+      guideBtn.addEventListener("click", function(e) {
+        e.preventDefault(); // Default link action roko
+        modal.classList.add("show");
+      });
+
+      // Close Modal on 'X' Click
+      closeBtn.addEventListener("click", function() {
+        modal.classList.remove("show");
+      });
+
+      // Close Modal when clicking outside the box
+      window.addEventListener("click", function(e) {
+        if (e.target === modal) {
+          modal.classList.remove("show");
+        }
+      });
+    });
+  </script>
 
   <script src="js/script.js"></script>
 </body>
