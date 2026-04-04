@@ -25,8 +25,30 @@
       justify-content: center;
     }
 
+    /* NEW: Capabilities Section Styles */
+    .caps-container {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 40px;
+      text-align: left;
+    }
+    .caps-box {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 25px;
+      border-radius: 15px;
+      border: 1px solid rgba(0, 255, 255, 0.1);
+      flex: 1;
+      min-width: 300px;
+    }
+    .caps-box h4 { margin-bottom: 20px; font-size: 1.2rem; }
+    .caps-list { list-style: none; padding: 0; }
+    .caps-list li { margin-bottom: 12px; font-size: 1rem; display: flex; align-items: center; gap: 12px; }
+    .badge-status { padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase; margin-left: auto; }
+
     /* =========================================
-       GUIDE MODAL (POPUP) STYLES
+        GUIDE MODAL (POPUP) STYLES
        ========================================= */
     .modal-overlay {
       display: none; /* Default hidden */
@@ -159,8 +181,35 @@
 
   <section class="demo-section">
     <div class="container">
-      <div class="demo-wrapper">
+      <div class="demo-wrapper" style="margin-bottom: 50px;">
         <img src="dashboard.png" alt="AutoMindBot Preview" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200';">
+      </div>
+
+      <div class="text-center" style="margin-bottom: 40px;">
+        <h2 style="font-size: 2.2rem;">Smart Form <span class="text-gradient">Capabilities</span></h2>
+      </div>
+      
+      <div class="caps-container">
+        <div class="caps-box" style="border-color: var(--primary-color);">
+          <h4 style="color: var(--primary-color);">💪 Currently Supported</h4>
+          <ul class="caps-list">
+            <li>✅ Multiple Choice (Radio)</li>
+            <li>✅ Checkboxes</li>
+            <li>✅ Linear Scale (Ratings)</li>
+            <li>✅ Multiple Choice Grid</li>
+            <li>✅ Checkbox Grid</li>
+            <li>✅ Rating Scales</li>
+          </ul>
+        </div>
+
+        <div class="caps-box" style="border-color: #ffcc00; background: rgba(255, 204, 0, 0.02);">
+          <h4 style="color: #ffcc00;">🚀 Upcoming Updates</h4>
+          <ul class="caps-list">
+            <li>🔄 Short & Paragraph Answers <span class="badge-status" style="background: #443300; color: #ffcc00;">IN PROGRESS</span></li>
+            <li>🔄 Dropdown Menus <span class="badge-status" style="background: #443300; color: #ffcc00;">UP NEXT</span></li>
+            <li>🔄 Date & Time Pickers <span class="badge-status" style="background: #443300; color: #ffcc00;">PLANNED</span></li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -193,7 +242,7 @@
       <div class="card" style="border-top: 2px solid var(--primary-color);">
         <div class="card-icon">🤖</div>
         <h3>Contextual Intelligence</h3>
-        <p>While basic fillers use random text, our AI uses logic to provide human-like responses.</p>
+        <p>Our AI uses logic to handle <b>MCQs, Grids, and Scales</b> with human-like precision. <i>(Text fields coming soon!)</i></p>
       </div>
       <div class="card" style="border-top: 2px solid var(--primary-color);">
         <div class="card-icon">🔄</div>
@@ -252,27 +301,21 @@
     <div class="modal-content">
       <span class="close-modal" id="closeGuide">&times;</span>
       <h2>Installation Guide</h2>
-      
       <div class="step-box">
         <h4>Step 1: Download the App</h4>
         <p>Click on the "Download for Windows" button to save the ZIP file to your computer.</p>
       </div>
-
       <div class="step-box">
         <h4>Step 2: Extract & Read</h4>
-        <p>Right-click the downloaded ZIP file and select <strong>"Extract All"</strong>. Once extracted, please open and read the <strong>"READ_ME_FIRST.txt"</strong> file for quick guidelines.</p>
+        <p>Right-click the ZIP file and select <strong>"Extract All"</strong>. Read the <strong>"READ_ME_FIRST.txt"</strong> for guidelines.</p>
       </div>
-
       <div class="step-box highlight-step">
         <h4>Step 3: Run the Application</h4>
-        <p>Double-click the <code>AutoMindBOT.exe</code> file to start the app.</p>
-        <p class="warning-text">Note: You might see a "Windows protected your PC" warning from Windows Defender. This is normal for new apps. Just click <strong>"More info"</strong> and then <strong>"Run anyway"</strong>. We do not collect your personal data and are working with authorities to remove this warning soon.</p>
+        <p>Double-click <code>AutoMindBOT.exe</code>. Click <strong>"More info"</strong> and <strong>"Run anyway"</strong> if Windows Defender pops up.</p>
       </div>
-
-     <div class="step-box">
+      <div class="step-box">
         <h4>Step 4: Test & Automate</h4>
-        <p>Log in to your account and instantly get <strong>15 Free Responses</strong> to test the bot and ensure it fills your forms correctly.</p>
-        <p style="margin-top: 8px;">Once you are completely satisfied with the results, you can easily purchase more MindPower as per your requirement. Enjoy the AutoMind experience!</p>
+        <p>Get <strong>15 Free Responses</strong> to test. Purchase more MindPower as needed!</p>
       </div>
     </div>
   </div>
@@ -283,18 +326,15 @@
       const guideBtn = document.getElementById("guideBtn");
       const closeBtn = document.getElementById("closeGuide");
 
-      // Open Modal on Button Click
       guideBtn.addEventListener("click", function(e) {
-        e.preventDefault(); // Default link action roko
+        e.preventDefault();
         modal.classList.add("show");
       });
 
-      // Close Modal on 'X' Click
       closeBtn.addEventListener("click", function() {
         modal.classList.remove("show");
       });
 
-      // Close Modal when clicking outside the box
       window.addEventListener("click", function(e) {
         if (e.target === modal) {
           modal.classList.remove("show");
