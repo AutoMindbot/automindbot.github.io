@@ -241,6 +241,10 @@
       const finalBtn = document.getElementById("finalDownloadBtn");
       const stepBox = document.getElementById("dynamicStepBox");
 
+      // Video elements selection
+      const mainDashboardVideo = document.querySelector('.video-container video');
+      const popupVideo = modal.querySelector('video');
+
       const stepsData = [
         { title: "Step 1: Secure Download", desc: "Save the ZIP file to your computer. Your data is 100% encrypted and safe with us." },
         { title: "Step 2: Simple Extraction", desc: "Right-click the downloaded file and select 'Extract All'. We prioritize your security and user privacy." },
@@ -256,10 +260,8 @@
           stepDesc.innerText = stepsData[index].desc;
           finalBtn.style.display = "none";
           nextBtn.style.display = "block";
-          // Changed to 5 as requested
           nextBtn.innerHTML = `Next Step (${index + 1}/5) &rarr;`;
         } else {
-          // Final Step - Download Ready
           stepTitle.innerText = "Final Step: Secure Download";
           stepTitle.style.color = "#ff00ff";
           stepBox.style.borderLeftColor = "#ff00ff";
@@ -270,6 +272,21 @@
         }
       }
 
+      // Modal CLOSE function (Fixes Sound Issue)
+      const closeModalHandler = () => {
+        modal.classList.remove("show");
+        
+        // 1. Popup video ko PAUSE karo (Sound band karne ke liye)
+        if (popupVideo) {
+          popupVideo.pause();
+        }
+        
+        // 2. Dashboard video ko wapas PLAY karo
+        if (mainDashboardVideo) {
+          mainDashboardVideo.play();
+        }
+      };
+
       openBtns.forEach(btn => {
         btn.addEventListener("click", (e) => {
           e.preventDefault();
@@ -279,12 +296,21 @@
           stepBox.style.backgroundColor = "rgba(0, 255, 255, 0.05)";
           loadStep(currentStep);
           modal.classList.add("show");
+
+          // 1. Dashboard video ko PAUSE karo
+          if (mainDashboardVideo) {
+            mainDashboardVideo.pause();
+          }
+
+          // 2. Popup video ko RESET karke chalu karo
+          if (popupVideo) {
+            popupVideo.currentTime = 0;
+            popupVideo.play();
+          }
         });
       });
 
-      closeBtn.addEventListener("click", () => { 
-        modal.classList.remove("show"); 
-      });
+      closeBtn.addEventListener("click", closeModalHandler);
       
       nextBtn.addEventListener("click", () => {
         currentStep++;
@@ -293,7 +319,7 @@
 
       window.addEventListener("click", (e) => { 
         if (e.target === modal) { 
-          modal.classList.remove("show"); 
+          closeModalHandler();
         } 
       });
     });
