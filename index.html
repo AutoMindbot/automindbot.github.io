@@ -6,138 +6,39 @@
   <title>AutoMindBot | The Ultimate AI Student Assistant</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
-    /* Content turant dikhane ke liye */
     .fade-in { opacity: 1 !important; transform: none !important; }
-    
-    /* Platform Note Style */
-    .platform-info {
-      margin-top: 15px;
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
-
-    /* Windows Icon Alignment */
-    .btn-with-icon {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      justify-content: center;
-    }
-
-    /* NEW: Capabilities Section Styles */
-    .caps-container {
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-      gap: 20px;
-      margin-top: 40px;
-      text-align: left;
-    }
-    .caps-box {
-      background: rgba(255, 255, 255, 0.03);
-      padding: 25px;
-      border-radius: 15px;
-      border: 1px solid rgba(0, 255, 255, 0.1);
-      flex: 1;
-      min-width: 300px;
-    }
+    .platform-info { margin-top: 20px; color: var(--text-muted); font-size: 0.95rem; font-weight: 500; }
+    .btn-with-icon { display: inline-flex; align-items: center; gap: 10px; justify-content: center; }
+    .caps-container { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; margin-top: 40px; text-align: left; }
+    .caps-box { background: rgba(255, 255, 255, 0.03); padding: 25px; border-radius: 15px; border: 1px solid rgba(0, 255, 255, 0.1); flex: 1; min-width: 300px; }
     .caps-box h4 { margin-bottom: 20px; font-size: 1.2rem; }
     .caps-list { list-style: none; padding: 0; }
     .caps-list li { margin-bottom: 12px; font-size: 1rem; display: flex; align-items: center; gap: 12px; }
     .badge-status { padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase; margin-left: auto; }
-
-    /* =========================================
-        GUIDE MODAL (POPUP) STYLES
-       ========================================= */
-    .modal-overlay {
-      display: none; /* Default hidden */
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(5px);
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
     
-    .modal-overlay.show {
-      display: flex;
-      opacity: 1;
-    }
+    /* Smart Modal Styles */
+    .modal-overlay { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); backdrop-filter: blur(5px); align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; }
+    .modal-overlay.show { display: flex; opacity: 1; }
+    .modal-content { background-color: #0a0a0a; border: 1px solid #00ffff; border-radius: 12px; padding: 25px 20px; width: 90%; max-width: 450px; position: relative; text-align: left; box-shadow: 0 0 25px rgba(0, 255, 255, 0.15); max-height: 90vh; overflow-y: auto; }
+    .close-modal { position: absolute; top: 12px; right: 18px; color: #aaa; font-size: 32px; font-weight: bold; cursor: pointer; transition: color 0.3s; line-height: 1; }
+    .close-modal:hover { color: #ff00ff; }
+    
+    .step-box { background-color: rgba(0, 255, 255, 0.05); border-left: 4px solid #00ffff; padding: 20px; border-radius: 0 8px 8px 0; transition: all 0.3s ease; min-height: 130px; display: flex; flex-direction: column; justify-content: center; }
 
-    .modal-content {
-      background-color: #0a0a0a;
-      border: 1px solid #00ffff;
-      border-radius: 12px;
-      padding: 30px;
-      width: 90%;
-      max-width: 650px;
+    /* Custom Video Container Glow */
+    .video-container {
       position: relative;
-      text-align: left;
-      box-shadow: 0 0 25px rgba(0, 255, 255, 0.15);
-      max-height: 85vh;
-      overflow-y: auto;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.15), 0 0 10px rgba(255, 0, 255, 0.1);
+      overflow: hidden;
+      max-width: 1000px;
+      margin: 0 auto;
+      background: #000;
     }
-
-    .close-modal {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      color: #aaa;
-      font-size: 30px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: color 0.3s;
-    }
-
-    .close-modal:hover {
-      color: #ff00ff;
-    }
-
-    .modal-content h2 {
-      color: #00ffff;
-      margin-bottom: 25px;
-      font-size: 2rem;
-      text-align: center;
-    }
-
-    .step-box {
-      background-color: #111;
-      border-left: 4px solid #ff00ff;
-      padding: 18px;
-      margin-bottom: 15px;
-      border-radius: 0 8px 8px 0;
-    }
-
-    .step-box h4 {
-      color: white;
-      margin-bottom: 8px;
-      font-size: 1.15rem;
-    }
-
-    .step-box p {
-      color: #ccc;
-      font-size: 0.95rem;
-      line-height: 1.6;
-      margin: 0;
-    }
-
-    .highlight-step {
-      border-left: 4px solid #00ffff;
-      background-color: rgba(0, 255, 255, 0.05);
-    }
-
-    .warning-text {
-      color: #ffcc00 !important;
-      margin-top: 12px !important;
-      font-size: 0.9rem !important;
-      font-style: italic;
+    .video-container video {
+      width: 100%;
+      display: block;
     }
   </style>
 </head>
@@ -148,50 +49,53 @@
       <a href="index.html" class="logo">Auto<span class="text-gradient">MindBot</span></a>
       <button class="mobile-menu-btn">☰</button>
       <div class="nav-links">
-        <a href="index.html">Home</a>
+        <a href="index.html" class="active">Home</a>
         <a href="features.html">Features</a>
         <a href="pricing.html">Pricing</a>
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
-        <a href="https://github.com/AutoMindbot/automindbot.github.io/releases/download/v1.0.0/AutoMindBOT_v1.0.1.zip" download class="btn btn-primary btn-with-icon nav-download-btn">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1V11.7H0V3.449zm0 9.15h9.75V22.2L0 20.851V12.599zm11.25-10.749L24 0v11.7H11.25V1.85zM11.25 12.6H24v11.4l-12.75-1.8V12.6z"/></svg>
-          Download
-        </a>
       </div>
     </div>
   </nav>
 
-  <header class="hero text-center">
+  <header class="hero text-center fade-in">
     <div class="container hero-content">
-      <h1 style="line-height: 1.1;">Built for Students.<br><span class="text-gradient">Powered by AI.</span></h1>
-      <p>Stop the struggle of manual data entry. AutoMindBot delivers fast, accurate, and automatic Google Form filling in seconds so you can save hours of repetitive work and focus on what truly matters: your learning.</p>
-      <div class="hero-btns">
-        <a href="https://github.com/AutoMindbot/automindbot.github.io/releases/download/v1.0.0/AutoMindBOT_v1.0.1.zip" download class="btn btn-primary btn-with-icon" style="padding: 16px 35px; font-size: 1.1rem;">
+      <h1 class="hero-title-main">Built for Students.<br><span class="text-gradient">Powered by AI.</span></h1>
+      <p>Stop manual typing. Automate your Google Forms in seconds and save hours of repetitive work. Your time is for learning, let AI handle the busywork.</p>
+      
+      <div class="hero-btns mt-20">
+        <button class="btn btn-primary btn-with-icon hero-dl-btn open-smart-modal">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1V11.7H0V3.449zm0 9.15h9.75V22.2L0 20.851V12.599zm11.25-10.749L24 0v11.7H11.25V1.85zM11.25 12.6H24v11.4l-12.75-1.8V12.6z"/></svg>
           Download for Windows
-        </a>
-        <a href="#" id="guideBtn" class="btn btn-secondary">Guide to Download & Install</a>
+        </button>
       </div>
       <p class="platform-info">
-        Currently available for Windows PC & Laptops. <br>
-        <span style="opacity: 0.7; font-weight: 400;">(Support for Android, Mac, and iOS is coming soon)</span>
+        Currently available for Windows PC & Laptops.
       </p>
     </div>
   </header>
 
-  <section class="demo-section">
+  <section class="demo-section fade-in">
     <div class="container">
-      <div class="demo-wrapper" style="margin-bottom: 50px;">
-        <img src="dashboard.png" alt="AutoMindBot Preview" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200';">
+      
+      <div class="text-center mb-30">
+        <h2 class="section-title-md">How to use <span class="text-gradient">AutoMindBot</span></h2>
+        <p class="text-muted-gray mt-10">See the automation in action.</p>
       </div>
 
-      <div class="text-center" style="margin-bottom: 40px;">
-        <h2 style="font-size: 2.2rem;">Smart Form <span class="text-gradient">Capabilities</span></h2>
+      <div class="video-container mb-50">
+        <video src="how-to-use-demo.mp4" controls autoplay muted loop poster="dashboard.png">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div class="text-center mb-20 mt-15">
+        <h2 class="section-title-md">Smart Form <span class="text-gradient">Capabilities</span></h2>
       </div>
       
       <div class="caps-container">
-        <div class="caps-box" style="border-color: var(--primary-color);">
-          <h4 style="color: var(--primary-color);">💪 Currently Supported</h4>
+        <div class="caps-box caps-box-primary">
+          <h4 class="text-primary-color">💪 Currently Supported</h4>
           <ul class="caps-list">
             <li>✅ Multiple Choice (Radio)</li>
             <li>✅ Checkboxes</li>
@@ -202,22 +106,22 @@
           </ul>
         </div>
 
-        <div class="caps-box" style="border-color: #ffcc00; background: rgba(255, 204, 0, 0.02);">
-          <h4 style="color: #ffcc00;">🚀 Upcoming Updates</h4>
+        <div class="caps-box caps-box-warning">
+          <h4 class="text-warning-color">🚀 Upcoming Updates</h4>
           <ul class="caps-list">
-            <li>🔄 Short & Paragraph Answers <span class="badge-status" style="background: #443300; color: #ffcc00;">IN PROGRESS</span></li>
-            <li>🔄 Dropdown Menus <span class="badge-status" style="background: #443300; color: #ffcc00;">UP NEXT</span></li>
-            <li>🔄 Date & Time Pickers <span class="badge-status" style="background: #443300; color: #ffcc00;">PLANNED</span></li>
+            <li>🔄 Short & Paragraph Answers <span class="badge-status badge-status-warning">IN PROGRESS</span></li>
+            <li>🔄 Dropdown Menus <span class="badge-status badge-status-warning">UP NEXT</span></li>
+            <li>🔄 Date & Time Pickers <span class="badge-status badge-status-warning">PLANNED</span></li>
           </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section-padding container">
-    <div class="text-center" style="margin-bottom: 60px;">
-      <h2 style="font-size: 2.5rem;">Why Students <span class="text-gradient">Choose AutoMindBot?</span></h2>
-      <p style="color: var(--text-muted); margin-top: 10px;">The professional choice for academic automation.</p>
+  <section class="section-padding container fade-in">
+    <div class="text-center mb-60">
+      <h2 class="section-title-lg">Why Students <span class="text-gradient">Choose AutoMindBot?</span></h2>
+      <p class="text-muted-gray mt-10">The professional choice for academic automation.</p>
     </div>
 
     <div class="grid-3">
@@ -238,18 +142,18 @@
       </div>
     </div>
 
-    <div class="grid-3" style="margin-top: 30px;">
-      <div class="card" style="border-top: 2px solid var(--primary-color);">
+    <div class="grid-3 mt-30">
+      <div class="card featured-card-top">
         <div class="card-icon">🤖</div>
         <h3>Contextual Intelligence</h3>
-        <p>Our AI uses logic to handle <b>MCQs, Grids, and Scales</b> with human-like precision. <i>(Text fields coming soon!)</i></p>
+        <p>Our AI uses logic to handle <b>MCQs, Grids, and Scales</b> with human-like precision.</p>
       </div>
-      <div class="card" style="border-top: 2px solid var(--primary-color);">
+      <div class="card featured-card-top">
         <div class="card-icon">🔄</div>
         <h3>Multi-Step Logic</h3>
         <p>Unlike standard extensions that fail on page 2, we handle complex multi-page forms.</p>
       </div>
-      <div class="card" style="border-top: 2px solid var(--primary-color);">
+      <div class="card featured-card-top">
         <div class="card-icon">💎</div>
         <h3>Credit-Based Pricing</h3>
         <p>Forget expensive subscriptions. Pay only for what you use starting with our ₹10 refill system.</p>
@@ -257,14 +161,15 @@
     </div>
   </section>
 
-  <section class="container" style="margin-bottom: 100px;">
+  <section class="container fade-in mb-100">
     <div class="cta-section text-center">
-      <h2 style="font-size: 2.5rem; margin-bottom: 16px;">Ready to automate?</h2>
-      <p style="margin-bottom: 30px; color: var(--text-muted);">Join 1000+ students. Download the official AutoMindBot setup for Windows.</p>
-      <a href="https://github.com/AutoMindbot/automindbot.github.io/releases/download/v1.0.0/AutoMindBOT_v1.0.1.zip" download class="btn btn-primary btn-with-icon" style="padding: 18px 45px; font-size: 1.2rem;">
+      <h2 class="section-title-lg mb-16">Ready to automate?</h2>
+      <p class="text-muted-gray mb-30">Join 1000+ students. Download the official AutoMindBot setup for Windows.</p>
+      
+      <button class="btn btn-primary btn-with-icon cta-dl-btn open-smart-modal">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1V11.7H0V3.449zm0 9.15h9.75V22.2L0 20.851V12.599zm11.25-10.749L24 0v11.7H11.25V1.85zM11.25 12.6H24v11.4l-12.75-1.8V12.6z"/></svg>
         Download for Windows (.zip)
-      </a>
+      </button>
     </div>
   </section>
 
@@ -273,12 +178,12 @@
       <div class="footer-grid">
         <div class="footer-col">
           <a href="index.html" class="logo">Auto<span class="text-gradient">MindBot</span></a>
-          <p style="margin-top: 15px;">Smartest AI automation for the modern student.</p>
+          <p class="mt-15">Smartest AI automation for the modern student.</p>
         </div>
         <div class="footer-col">
           <h4>Platform</h4>
-          <p style="font-size: 0.9rem; color: var(--text-muted);">Windows 10 / 11</p>
-          <p style="font-size: 0.8rem; color: var(--text-muted); opacity: 0.6;">macOS & Android (Coming Soon)</p>
+          <p class="footer-text-sm">Windows 10 / 11</p>
+          <p class="footer-text-xs opacity-60">macOS & Android (Coming Soon)</p>
         </div>
         <div class="footer-col">
           <h4>Company</h4>
@@ -297,48 +202,97 @@
     </div>
   </footer>
 
-  <div id="guideModal" class="modal-overlay">
+  <div id="smartGuideModal" class="modal-overlay">
     <div class="modal-content">
-      <span class="close-modal" id="closeGuide">&times;</span>
-      <h2>Installation Guide</h2>
-      <div class="step-box">
-        <h4>Step 1: Download the App</h4>
-        <p>Click on the "Download for Windows" button to save the ZIP file to your computer.</p>
+      <span class="close-modal" id="closeSmartGuide">&times;</span>
+      
+      <h2 style="font-size: 1.5rem; margin-bottom: 18px; text-align: center; color: #fff;">Guide to Download & Install</h2>
+
+      <div style="width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 8px; border: 1px solid var(--primary-color); margin-bottom: 20px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.5);">
+        <span style="color: var(--text-muted); font-size: 0.9rem; z-index: 2;">[Tutorial Video Playing...]</span>
+        </div>
+
+      <div id="dynamicStepBox" class="step-box">
+        <h4 id="stepTitle" style="color: #00ffff; font-size: 1.15rem; margin-bottom: 8px;">Step 1: Secure Download</h4>
+        <p id="stepDesc" style="color: #ccc; font-size: 0.95rem; line-height: 1.5;">Save the ZIP file to your computer. Your data is 100% encrypted and safe with us.</p>
       </div>
-      <div class="step-box">
-        <h4>Step 2: Extract & Read</h4>
-        <p>Right-click the ZIP file and select <strong>"Extract All"</strong>. Read the <strong>"READ_ME_FIRST.txt"</strong> for guidelines.</p>
-      </div>
-      <div class="step-box highlight-step">
-        <h4>Step 3: Run the Application</h4>
-        <p>Double-click <code>AutoMindBOT.exe</code>. Click <strong>"More info"</strong> and <strong>"Run anyway"</strong> if Windows Defender pops up.</p>
-      </div>
-      <div class="step-box">
-        <h4>Step 4: Test & Automate</h4>
-        <p>Get <strong>15 Free Responses</strong> to test. Purchase more MindPower as needed!</p>
-      </div>
+
+      <button id="nextStepBtn" class="btn btn-secondary w-100 mt-15" style="transition: all 0.3s; cursor: pointer;">
+        Next Step (1/5) &rarr;
+      </button>
+
+      <a href="https://github.com/AutoMindbot/automindbot.github.io/releases/download/v1.0.0/AutoMindBOT_v1.0.1.zip" download id="finalDownloadBtn" class="btn btn-primary w-100 mt-15" style="display: none; padding: 16px; font-size: 1.1rem; box-shadow: 0 0 20px rgba(255, 0, 255, 0.4); justify-content: center; font-weight: 600;">
+        Download Now (.zip)
+      </a>
     </div>
   </div>
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      const modal = document.getElementById("guideModal");
-      const guideBtn = document.getElementById("guideBtn");
-      const closeBtn = document.getElementById("closeGuide");
+      const modal = document.getElementById("smartGuideModal");
+      const openBtns = document.querySelectorAll(".open-smart-modal");
+      const closeBtn = document.getElementById("closeSmartGuide");
+      
+      const stepTitle = document.getElementById("stepTitle");
+      const stepDesc = document.getElementById("stepDesc");
+      const nextBtn = document.getElementById("nextStepBtn");
+      const finalBtn = document.getElementById("finalDownloadBtn");
+      const stepBox = document.getElementById("dynamicStepBox");
 
-      guideBtn.addEventListener("click", function(e) {
-        e.preventDefault();
-        modal.classList.add("show");
-      });
+      const stepsData = [
+        { title: "Step 1: Secure Download", desc: "Save the ZIP file to your computer. Your data is 100% encrypted and safe with us." },
+        { title: "Step 2: Simple Extraction", desc: "Right-click the downloaded file and select 'Extract All'. We prioritize your security and user privacy." },
+        { title: "Step 3: Installation & Safety", desc: "Double-click the EXE file. If Windows Defender appears, click 'More info' then 'Run anyway'. We are actively working with Microsoft on this certification. The file is entirely safe." },
+        { title: "Step 4: Start Automating", desc: "Your first 7 responses are completely Free! Use realistic profiles and natural bot behavior to save your time." }
+      ];
 
-      closeBtn.addEventListener("click", function() {
-        modal.classList.remove("show");
-      });
+      let currentStep = 0;
 
-      window.addEventListener("click", function(e) {
-        if (e.target === modal) {
-          modal.classList.remove("show");
+      function loadStep(index) {
+        if(index < stepsData.length) {
+          stepTitle.innerText = stepsData[index].title;
+          stepDesc.innerText = stepsData[index].desc;
+          finalBtn.style.display = "none";
+          nextBtn.style.display = "block";
+          // Changed to 5 as requested
+          nextBtn.innerHTML = `Next Step (${index + 1}/5) &rarr;`;
+        } else {
+          // Final Step - Download Ready
+          stepTitle.innerText = "Final Step: Secure Download";
+          stepTitle.style.color = "#ff00ff";
+          stepBox.style.borderLeftColor = "#ff00ff";
+          stepBox.style.backgroundColor = "rgba(255, 0, 255, 0.05)";
+          stepDesc.innerText = "Your 100% safe download link is ready. Click the button below to begin.";
+          nextBtn.style.display = "none";
+          finalBtn.style.display = "flex";
         }
+      }
+
+      openBtns.forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          currentStep = 0;
+          stepTitle.style.color = "#00ffff";
+          stepBox.style.borderLeftColor = "#00ffff";
+          stepBox.style.backgroundColor = "rgba(0, 255, 255, 0.05)";
+          loadStep(currentStep);
+          modal.classList.add("show");
+        });
+      });
+
+      closeBtn.addEventListener("click", () => { 
+        modal.classList.remove("show"); 
+      });
+      
+      nextBtn.addEventListener("click", () => {
+        currentStep++;
+        loadStep(currentStep);
+      });
+
+      window.addEventListener("click", (e) => { 
+        if (e.target === modal) { 
+          modal.classList.remove("show"); 
+        } 
       });
     });
   </script>
