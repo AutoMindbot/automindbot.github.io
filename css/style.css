@@ -91,6 +91,22 @@ h1, h2, h3, h4 { font-weight: 700; line-height: 1.2; }
 .demo-wrapper img { width: 100%; border-radius: var(--radius-md); display: block; }
 .demo-caption { text-align: center; margin-top: 16px; color: var(--text-muted); font-size: 0.9rem; }
 
+/* Video Container Styles */
+.video-container {
+  position: relative;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.15), 0 0 10px rgba(255, 0, 255, 0.1);
+  overflow: hidden;
+  max-width: 1000px;
+  margin: 0 auto;
+  background: #000;
+}
+.video-container video {
+  width: 100%;
+  display: block;
+}
+
 .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; margin-top: 48px; }
 .card { background: var(--surface-color); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 32px; transition: var(--transition); }
 .card:hover { transform: translateY(-5px); border-color: rgba(255, 255, 255, 0.2); box-shadow: var(--shadow-lg); }
@@ -130,52 +146,117 @@ h1, h2, h3, h4 { font-weight: 700; line-height: 1.2; }
 .fade-in { opacity: 1 !important; transform: none !important; }
 
 /* ==========================================
-   MOBILE RESPONSIVE DESIGN & HAMBURGER MENU
+   UTILITY CLASSES
+   ========================================== */
+.mt-0 { margin-top: 0; }
+.mt-10 { margin-top: 10px; }
+.mt-15 { margin-top: 15px; }
+.mt-20 { margin-top: 20px; }
+.mt-30 { margin-top: 30px; }
+.mt-60 { margin-top: 60px; }
+.mb-8 { margin-bottom: 8px; }
+.mb-10 { margin-bottom: 10px; }
+.mb-16 { margin-bottom: 16px; }
+.mb-20 { margin-bottom: 20px; }
+.mb-30 { margin-bottom: 30px; }
+.mb-32 { margin-bottom: 32px; }
+.mb-40 { margin-bottom: 40px; }
+.mb-50 { margin-bottom: 50px; }
+.mb-60 { margin-bottom: 60px; }
+.mb-100 { margin-bottom: 100px; }
+.ml-10 { margin-left: 10px; }
+.ml-15 { margin-left: 15px; }
+.pt-20 { padding-top: 20px; }
+.pb-40 { padding-bottom: 40px; }
+.w-100 { width: 100%; }
+
+/* Custom Typography & Colors */
+.text-primary-color { color: var(--primary-color); }
+.text-warning-color { color: #ffcc00; }
+.text-danger-color { color: #ef4444; }
+.text-white { color: #ffffff; }
+.text-muted-gray { color: #9ca3af; }
+.fw-400 { font-weight: 400; }
+.fw-600 { font-weight: 600; }
+.fw-700 { font-weight: 700; }
+.opacity-60 { opacity: 0.6; }
+.opacity-70 { opacity: 0.7; }
+.visible-header { opacity: 1; transform: none; }
+
+/* Specific Components */
+.nav-dl-btn { padding: 8px 16px; margin-left: 15px; }
+.hero-dl-btn { padding: 16px 35px; font-size: 1.1rem; }
+.cta-dl-btn { padding: 18px 45px; font-size: 1.2rem; }
+.btn-submit-form { width: 100%; padding: 14px; font-size: 1rem; margin-top: 10px; }
+
+.hero-title-main { line-height: 1.1; }
+.section-title-md { font-size: 2.2rem; }
+.section-title-lg { font-size: 2.5rem; }
+.contact-heading-main { font-size: 1.5rem; margin-bottom: 8px; }
+
+.caps-box-primary { border-color: var(--primary-color); }
+.caps-box-warning { border-color: #ffcc00; background: rgba(255, 204, 0, 0.02); }
+.badge-status-warning { background: #443300; color: #ffcc00; }
+.featured-card-top { border-top: 2px solid var(--primary-color); }
+
+.footer-tagline-main { color: var(--text-muted); margin-top: 16px; font-size: 0.9rem; }
+.footer-text-sm { font-size: 0.9rem; color: var(--text-muted); }
+.footer-text-xs { font-size: 0.8rem; color: var(--text-muted); }
+
+.pricing-banner { background: rgba(99, 102, 241, 0.1); padding: 20px; border-radius: 12px; border: 1px solid rgba(99, 102, 241, 0.2); display: inline-block; }
+.pricing-power-text { font-size: 1.5rem; margin-bottom: 20px; }
+.pricing-list-style { text-align: left; list-style: none; }
+
+.auth-title-modal { color: white; margin-bottom: 10px; }
+.auth-sub-modal { color: #9ca3af; font-size: 0.85rem; margin-bottom: 20px; }
+.auth-footer-modal { margin-top: 20px; font-size: 0.85rem; color: #9ca3af; }
+.auth-link-modal { color: #6366f1; text-decoration: none; }
+.user-status-bar { display: none; background: rgba(99, 102, 241, 0.1); padding: 10px; color: #6366f1; font-size: 0.9rem; font-weight: 500; }
+
+/* ==========================================
+   MOBILE RESPONSIVE DESIGN (Perfectly Balanced)
    ========================================== */
 @media (max-width: 768px) {
-  .hero h1 { font-size: 2.5rem; }
-  
-  /* Show Hamburger Icon */
+  /* Navbar */
   .mobile-menu-btn { display: block; }
+  .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: #0b0f19; flex-direction: column; padding: 20px 0; border-bottom: 2px solid var(--primary-color); box-shadow: 0 15px 30px rgba(0,0,0,0.8); z-index: 9999; }
+  .nav-links.active { display: flex !important; }
+  .nav-links a { width: 100%; text-align: center; padding: 15px 0; font-size: 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
 
-  /* Hide Links by default on Mobile */
-  .nav-links {
-    display: none;
-    position: absolute;
-    top: 70px; /* Right below navbar */
-    left: 0;
-    width: 100%;
-    background: #0b0f19; /* Solid dark color so it doesn't mix with background */
-    flex-direction: column;
-    padding: 20px 0;
-    border-bottom: 2px solid var(--primary-color);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.8);
-    z-index: 9999;
-  }
+  /* Hero Section */
+  .hero { padding-top: 100px; padding-bottom: 20px; }
+  .hero h1, .hero-title-main { font-size: 2rem !important; line-height: 1.2; }
+  .hero p { font-size: 0.95rem !important; padding: 0 10px; }
+  .hero-btns { flex-direction: column; padding: 0 15px; }
+  .hero-btns .btn { width: 100%; justify-content: center; }
 
-  /* When JS adds '.active', FORCE display it */
-  .nav-links.active {
-    display: flex !important; 
-  }
+  /* Video & Spacing Adjustments (Fixes the overlap and gaps) */
+  .video-container { margin: 0 15px !important; } 
+  .mt-60 { margin-top: 25px !important; }   /* Yeh video ke niche wale gap ko control karega */
+  .mb-50 { margin-bottom: 20px !important; } /* Yeh video margin ko control karega */
+  .mb-40 { margin-bottom: 20px !important; }
+  .mb-30 { margin-bottom: 15px !important; } /* Yeh video ke upar wale gap ko control karega */
+  
+  /* Cards & Grids */
+  .grid-3 { grid-template-columns: 1fr !important; gap: 20px; padding: 0 15px; }
+  .card { padding: 25px 20px !important; }
+  .caps-container { flex-direction: column; gap: 15px; padding: 0 15px; }
+  .caps-box { min-width: 100%; padding: 15px; }
+  
+  /* Headers */
+  .page-header { padding: 100px 15px 30px !important; }
+  .section-padding { padding: 40px 0 !important; }
+  .section-title-md { font-size: 1.7rem; }
+  .section-title-lg { font-size: 1.9rem; }
 
-  /* Style the links inside mobile menu */
-  .nav-links a {
-    width: 100%;
-    text-align: center;
-    padding: 15px 0;
-    font-size: 1.1rem;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-  }
+  /* Pricing Page Fixes */
+  .pricing-banner { display: block !important; margin: 0 15px !important; padding: 15px !important; }
+  .pricing-banner .text-primary-color { display: block; margin-bottom: 8px; font-size: 1rem; text-align: center; }
+  .pricing-banner .text-muted-gray { display: block; margin-left: 0 !important; font-size: 0.85rem; line-height: 1.5; text-align: center; }
+  .price { font-size: 2.5rem !important; margin: 15px 0 !important; }
+  .pricing-power-text { font-size: 1.25rem !important; }
 
-  /* Active glow in mobile needs to look clean */
-  .nav-links a.active:not(.btn)::after {
-    display: none; /* Hide bottom line in mobile to keep it clean */
-  }
-
-  /* Center Download Button */
-  .nav-links .btn-primary {
-    width: 80%;
-    margin: 20px auto 10px;
-    justify-content: center;
-  }
+  /* Footer */
+  .footer-grid { grid-template-columns: 1fr; gap: 30px; text-align: center; padding: 0 15px; }
+  .pb-40 { padding-bottom: 20px !important; }
 }
